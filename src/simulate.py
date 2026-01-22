@@ -82,7 +82,7 @@ def run_simulation(
       If set, we early-stop when max_i |x_i(t+1)-x_i(t)| < tol
 
     record_ndi:
-      If True, record ndi(t)  for t=0..T 
+      If True, record ndi(t) for t=0..T 
     """
     adj, edges = build_two_island(n=n, ps=ps, pd=pd_, seed=seed)
 
@@ -115,7 +115,6 @@ def run_simulation(
 
     ndi0 = ndi(x0_copy, edges)
     ndiT = ndi(x, edges)
-
 
     out: Dict[str, Any] = {
         "model": model,
@@ -200,5 +199,6 @@ def _clip01(v: float) -> float:
     if v > 1.0:
         return 1.0
     return v
+
 
 
