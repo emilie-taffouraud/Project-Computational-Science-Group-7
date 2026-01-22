@@ -45,6 +45,14 @@ def main() -> None:
         value_col="mean_delta_ndi",
         title="Mean ΔNDI over (h, b)",
     )
+    if "mean_gdi_T" in summary_df.columns:
+        plot_heatmap_delta_ndi(
+            summary_df=summary_df,
+            outpath=os.path.join("figures", "heatmap_gdi.png"),
+            value_col="mean_gdi_T",
+            title="Polarization (Normalized GDI)",
+        )
+    
 
     # ndi time-series (generate a few showcase runs)
     # pick a small set of conditions to visually compare:
@@ -119,3 +127,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
