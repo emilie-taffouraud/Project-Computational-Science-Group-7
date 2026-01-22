@@ -34,8 +34,6 @@ def summarize_by_condition(df: pd.DataFrame) -> pd.DataFrame:
               std_delta_ndi=("delta_ndi", "std"),
               mean_ndi_T=("ndi_T", "mean"),
               mean_island_sep_T=("island_sep_T", "mean"),
-              mean_gdi_T=("gdi_T", "mean"),  
-              std_gdi_T=("gdi_T", "std")
           )
           .sort_values(["h", "b"])
           .reset_index(drop=True)
@@ -117,4 +115,5 @@ def _require_cols(df: pd.DataFrame, cols: set) -> None:
     missing = cols - set(df.columns)
     if missing:
         raise ValueError(f"df missing required columns: {sorted(missing)}")
+
 
