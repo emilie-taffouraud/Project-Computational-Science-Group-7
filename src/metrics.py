@@ -69,6 +69,3 @@ def island_separation(x: Sequence[float], n: int) -> float:
     """
     m1, m2 = island_means(x, n)
     return abs(m1 - m2)
-
-
-
