@@ -117,3 +117,4 @@ def _require_cols(df: pd.DataFrame, cols: set) -> None:
         raise ValueError(f"df missing required columns: {sorted(missing)}")
 
 
+
