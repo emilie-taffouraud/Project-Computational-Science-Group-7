@@ -82,13 +82,12 @@ def run_simulation(
       If set, we early-stop when max_i |x_i(t+1)-x_i(t)| < tol
 
     record_ndi:
-      If True, record ndi(t) and gdi(t) for t=0..T 
+      If True, record ndi(t)  for t=0..T 
     """
     adj, edges = build_two_island(n=n, ps=ps, pd=pd_, seed=seed)
 
     x = init_opinions(n=n, mode=init_mode, x0=x0, noise=noise, seed=seed)
     ndi_series = [ndi(x, edges)] if record_ndi else None
-    gdi_series = [gdi(x)] if record_ndi else None
     x0_copy = list(x)
 
     steps = 0
@@ -107,19 +106,16 @@ def run_simulation(
             x = x_next
             if record_ndi:
                 ndi_series.append(ndi(x, edges))
-                gdi_series.append(gdi(x))
             if max_change < tol:
                 break
         else:
             x = x_next
             if record_ndi:
                 ndi_series.append(ndi(x, edges))
-                gdi_series.append(gdi(x))
 
     ndi0 = ndi(x0_copy, edges)
     ndiT = ndi(x, edges)
-    gdi0 = gdi(x0_copy)
-    gdiT = gdi(x)
+
 
     out: Dict[str, Any] = {
         "model": model,
@@ -138,15 +134,11 @@ def run_simulation(
         "ndi_0": ndi0,
         "ndi_T": ndiT,
         "delta_ndi": ndiT - ndi0,
-        "gdi_0": gdi0,
-        "gdi_T": gdiT,
-        "delta_gdi": gdiT - gdi0,
         "island_sep_T": island_separation(x, n),
     }
 
     if record_ndi:
         out["ndi_series"] = ndi_series  # list of floats
-        out["gdi_series"] = gdi_series
 
     # out["x_T"] = x
 
@@ -208,4 +200,5 @@ def _clip01(v: float) -> float:
     if v > 1.0:
         return 1.0
     return v
+
 
