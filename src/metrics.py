@@ -18,6 +18,29 @@ So:
 from __future__ import annotations
 from typing import Sequence, List, Tuple
 
+def gdi(x: Sequence[float]) -> float:
+    """
+    Global Disagreement Index 
+    GDI = Σ_{i<j} (x_i - x_j)²
+    
+    """
+    total = 0.0
+    N = len(x)
+    for i in range(N):
+        for j in range(i + 1, N):
+            diff = float(x[i]) - float(x[j])
+            total += diff * diff
+    return total
+
+def gdi_normalized(x: Sequence[float]) -> float:
+    """
+    Normalized GDI    
+    GDI_norm = GDI / (N choose 2) = 2*GDI / (N*(N-1))
+    """
+    N = len(x)
+    return 2.0 * gdi(x) / (N * (N - 1))
+
+
 
 def ndi(x: Sequence[float], edges: List[Tuple[int, int]]) -> float:
     """
@@ -69,3 +92,4 @@ def island_separation(x: Sequence[float], n: int) -> float:
     """
     m1, m2 = island_means(x, n)
     return abs(m1 - m2)
+
