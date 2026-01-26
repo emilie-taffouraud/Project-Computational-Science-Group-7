@@ -25,11 +25,13 @@ def plot_convergence_analysis(
         (0.5, 1), 
         (0.5, 8),
         (1.0, 1),
-        (1.0, 8)
+        (1.0, 8),
+        (1.2, 1),
+        (1.2, 8)
     ]
     
     cmap = plt.get_cmap('tab10')
-    # Assign a unique color to each of these 6 conditions
+    # Assign a unique color to each of these conditions
     color_map = {
         cond: cmap(i) for i, cond in enumerate(conditions_to_plot)
     }
@@ -79,7 +81,7 @@ def plot_convergence_analysis(
 
     ax1.set_xlabel('Time Step ($t$)', fontsize=13, fontweight='bold')
     ax1.set_ylabel('Network Disagreement Index (NDI)', fontsize=13, fontweight='bold')
-    ax1.set_title('NDI Evolution: Unique Colors per Condition', 
+    ax1.set_title('NDI Evolution', 
                   fontsize=14, fontweight='bold', pad=15)
     
     # Main Legend 
@@ -94,10 +96,8 @@ def plot_convergence_analysis(
     has_decrease = any(e < s * 0.5 for s, e in zip(start_vals, end_vals))
     has_increase = any(e > s * 1.2 for s, e in zip(start_vals, end_vals))
     
-    if has_decrease and not has_increase:
-        ax1.set_yscale('log')
-        ax1.set_ylabel('NDI (log scale)', fontsize=13, fontweight='bold')
-    elif has_increase and has_decrease:
+
+    if has_increase and has_decrease:
         ax1.set_yscale('symlog', linthresh=1.0)
         ax1.set_ylabel('NDI (symlog scale)', fontsize=13, fontweight='bold')
 
