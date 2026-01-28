@@ -84,7 +84,7 @@ def run_simulation(
     record_ndi:
       If True, record ndi(t) for t=0..T 
     """
-    adj, edges = build_two_island(n=n, ps=ps, pd=pd_, seed=seed)
+    adj, edges = build_two_island(n=n, ps=ps, pd=pd_)
 
     x = init_opinions(n=n, mode=init_mode, x0=x0, noise=noise, seed=seed)
     ndi_series = [ndi(x, edges)] if record_ndi else None
@@ -199,6 +199,7 @@ def _clip01(v: float) -> float:
     if v > 1.0:
         return 1.0
     return v
+
 
 
 
