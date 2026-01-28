@@ -1,0 +1,4 @@
+1.Move the following files from the scripts folder to the root directory:
+run_experiments.py，convergence_speed.py，plot_phase_diagram.py，visualize_opinion_evolution.py，and make_figures.py to root directory 
+2.Run run_experiments.py first, followed by make_figures.py.
+3.Execute convergence_speed.py, plot_phase_diagram.py, and visualize_opinion_evolution.py respectively.
