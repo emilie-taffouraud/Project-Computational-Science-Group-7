@@ -1,0 +1,2 @@
+1. run run_experiments.py
+2.run respectively plot_island_trends.py, 
