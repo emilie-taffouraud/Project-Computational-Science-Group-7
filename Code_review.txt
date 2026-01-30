@@ -1,4 +1,36 @@
-1.Move the following files from the scripts folder to the root directory:
-run_experiments.py，convergence_speed.py，plot_phase_diagram.py，visualize_opinion_evolution.py，and make_figures.py to root directory 
-2.Run run_experiments.py first, followed by make_figures.py.
-3.Execute convergence_speed.py, plot_phase_diagram.py, and visualize_opinion_evolution.py respectively.
+Project Computational Science Group 7
+Team members: Yuqiu Huang, Emilie Taffouraud, Mingtao Cheng, Litao Shen
+
+
+How to Run:
+
+in the terminal
+python -m venv .venv
+
+for windows 
+.venv\Scripts\activate
+
+for macos or linux:
+source .venv/bin/activate
+
+Install dependencies
+pip install -r requirements.txt
+
+Run the experment
+python run_experiments.py
+
+Outputs
+results/runs.csv = one row per simulation run, raw outputs, one big table
+results/summary.csv = aggregated stats grouped by (h,b): mean ndi, standard dev...
+
+Generate figures
+python make_figures.py
+
+Ouputs
+figures/ndi_timeseries.png = shows how polarization changes over time
+figures/heatmap_delta_ndi.png = heatmao of ndi over parametre combinations
+figures/final_opinion_dist.png = shows separation of the final opion distribution patterns
+
+
+Extra Graphs
+Execute convergence_speed.py, plot_phase_diagram.py, and visualize_opinion_evolution.py respectively, for the more complex graphs
